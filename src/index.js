@@ -1,5 +1,12 @@
+// Import custom CSS
+import './scss/styles.scss'
+import './scss/style.css'
+
 import { route } from "./router.js";
 import { menuTemplate } from "./views/menu.js";
+
+import * as bootstrap from 'bootstrap'
+
 
 (() => {
 
