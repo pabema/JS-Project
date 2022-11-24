@@ -40,12 +40,15 @@ window.addEventListener("hashchange", () => {
             let contenedor = document.querySelector("#container");
             console.log(contenedor);
         
-            let frases = serverData.map(dato => {
-                console.log(dato.datos);
-                contenedor.append(dataTemplate(dato));            
-            })
+
+            serverData.forEach(dato => {
+                contenedor.append(dataTemplate(dato));
+            });
+    
             
-            contenedor.append(frases);
+
+            
+            //contenedor.append(frases);
         
         })
     }
@@ -61,12 +64,9 @@ window.addEventListener("DOMContentLoaded", () => {
             let contenedor = document.querySelector("#container");
             console.log(contenedor);
         
-            let frases = serverData.map(dato => {
-                console.log(dato.datos);
-                contenedor.append(dataTemplate(dato));            
-            })
-            
-            contenedor.append(frases);
+            serverData.forEach(dato => {
+                contenedor.append(dataTemplate(dato));
+            });
         
         })
     }
