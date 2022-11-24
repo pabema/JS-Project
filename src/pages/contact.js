@@ -8,7 +8,7 @@ contactTemplate.innerHTML =
 `
 <!--Section: Contact v.2-->
 <br>
-<section class="">
+<section id="contact-form">
   <div class="mask d-flex align-items-center gradient-custom-3">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">

@@ -4,6 +4,7 @@ import './scss/style.css'
 
 import { route } from "./router.js";
 import { menuTemplate } from "./views/menu.js";
+import { footerTemplate } from './views/footer.js';
 
 import * as bootstrap from 'bootstrap'
 
@@ -26,6 +27,13 @@ import * as bootstrap from 'bootstrap'
         contenedor.id = 'container';
 
         main.append(contenedor);
+
+        let footer = document.createElement('div');
+        footer.classList.add('footer');
+        footer.id = 'footer';
+
+        footer.append(footerTemplate());
+        main.append(footer);
         
         window.location.hash = '#/';
 
@@ -35,6 +43,7 @@ import * as bootstrap from 'bootstrap'
             route(window.location.hash);
             header.innerHTML = "";
             header.append(menuTemplate());
+        
         })
 
     })

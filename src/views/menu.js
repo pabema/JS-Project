@@ -8,7 +8,7 @@ let navMenu = document.createElement("div");
 navMenu.id = 'header';
 navMenu.innerHTML = 
 `
-<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+<nav id="header" class="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
 <div class="container-fluid">
   <a class="navbar-brand" href="#">PornHub</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

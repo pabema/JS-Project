@@ -54,6 +54,7 @@ loginTemplate.querySelector('#loginBtn').addEventListener('click', async ()=>{
   let email = loginTemplate.querySelector('#email').value;
   let password = loginTemplate.querySelector('#password').value;
   await loginUser(email, password);
+  window.location.hash = "#/"
   console.log("Email" + email + "logueado");
 });
 
@@ -61,6 +62,7 @@ loginTemplate.addEventListener("submit", async ()=>{
   let email = loginTemplate.querySelector('#email').value;
   let password = loginTemplate.querySelector('#password').value;
   await loginUser(email, password);
+  window.location.hash = "#/"
   console.log("Email" + email + "logueado");
 });
 

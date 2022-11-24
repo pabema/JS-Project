@@ -31,8 +31,8 @@ return homeTemplate;
 
 }
 
-window.addEventListener('hashchange', () => {
-    if(window.location.hash == '#/' && token != "undefined"){
+window.addEventListener("hashchange", () => {
+    if(window.location.hash == '#/' && token != undefined){
         datosServidor().then(serverData => {
     
             //console.log(datos);
@@ -40,12 +40,33 @@ window.addEventListener('hashchange', () => {
             let contenedor = document.querySelector("#container");
             console.log(contenedor);
         
-            let cervesa = serverData.map(dato => {
+            let frases = serverData.map(dato => {
                 console.log(dato.datos);
                 contenedor.append(dataTemplate(dato));            
             })
+            
+            contenedor.append(frases);
         
-            contenedor.append(cervesa);
+        })
+    }
+    
+})
+
+window.addEventListener("DOMContentLoaded", () => {
+    if(window.location.hash == '#/' && token != undefined){
+        datosServidor().then(serverData => {
+    
+            //console.log(datos);
+        
+            let contenedor = document.querySelector("#container");
+            console.log(contenedor);
+        
+            let frases = serverData.map(dato => {
+                console.log(dato.datos);
+                contenedor.append(dataTemplate(dato));            
+            })
+            
+            contenedor.append(frases);
         
         })
     }

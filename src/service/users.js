@@ -8,6 +8,8 @@ async function loginUser(email, password){
         localStorage.setItem("user", email);
         console.log("login");
         console.log(localStorage);
+        location.reload();
+
     });
 }
 

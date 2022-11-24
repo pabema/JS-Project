@@ -2,3 +2,30 @@ body{
     background-color: black;
     color: wheat;
 }
+
+#header{
+    position: fixed;
+    width: 100%;
+    /* position: fixed; */
+}
+
+#main{
+    margin-top: 50px;
+    
+}
+
+#container{
+    min-height: 85.7vh;
+}
+
+#contact-form{
+    margin-bottom: 40px;
+}
+
+#footer{
+    /* display: inline-block; */
+    position: relative;
+    bottom: 0;
+    width: 100%;   
+    background: #6cf;
+}

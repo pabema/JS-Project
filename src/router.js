@@ -19,7 +19,7 @@ function route(ruta){
         case('#/'):
             body.innerHTML = '';
             console.log(localStorage.getItem("access_token"));
-            if(token != null && token != "undefined"){
+            if(token != null && token != undefined){
                 body.append(generateHome());
             }
             break;
@@ -29,7 +29,7 @@ function route(ruta){
             break;
         case('#/about'):
             body.innerHTML = '';
-            if(token != null && token != "undefined"){
+            if(token != null && token != undefined){
                 body.append(aboutTemplate);
             }
             break;
@@ -39,7 +39,7 @@ function route(ruta){
             break;
         case('#/contact'):
             body.innerHTML = '';
-            if(token != null && token != "undefined"){
+            if(token != null && token != undefined){
                 body.append(contactTemplate);
             }
             break;
