@@ -1,8 +1,9 @@
-import { generateHome } from "./pages/home.js";
+import { home } from "./pages/home.js";
 import { loginForm } from "./pages/login.js";
 import { aboutTemplate } from "./pages/about.js";
 import { signUpForm } from "./pages/signUp.js";
 import { contactTemplate } from "./pages/contact.js";
+import { bookInfo } from "./pages/bookInfo.js";
 
 export {route};
 
@@ -16,33 +17,34 @@ function route(ruta){
     let body = document.querySelector('#container');
     
     switch(ruta){
-        case('#/'):
-            body.innerHTML = '';
-            console.log(localStorage.getItem("access_token"));
-            if(token != null && token != undefined){
-                body.append(generateHome());
-            }
+        case '#/':
+            body.innerHTML = "";
+            body.append(home());
             break;
-        case('#/login'):
+        case '#/login':
             body.innerHTML = '';
             body.append(loginForm());
             break;
-        case('#/about'):
+        case '#/about':
             body.innerHTML = '';
-            if(token != null && token != undefined){
-                body.append(aboutTemplate);
-            }
+            body.append(aboutTemplate());
             break;
-        case('#/signUp'):
+        case '#/signUp':
             body.innerHTML = '';
             body.append(signUpForm());
             break;
-        case('#/contact'):
+        case '#/contact':
             body.innerHTML = '';
-            if(token != null && token != undefined){
-                body.append(contactTemplate);
-            }
+            body.append(contactTemplate);
             break;
+        case '#/book':
+                body.innerHTML = '';
+                body.append(bookInfo());
+                break;
+        case "": {
+            window.location.hash = "#/";
+            break;
+        }
     }
 
 }

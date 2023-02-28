@@ -53,17 +53,14 @@ loginTemplate.innerHTML =
 loginTemplate.querySelector('#loginBtn').addEventListener('click', async ()=>{
   let email = loginTemplate.querySelector('#email').value;
   let password = loginTemplate.querySelector('#password').value;
-  await loginUser(email, password);
-  window.location.hash = "#/"
-  console.log("Email" + email + "logueado");
-});
-
-loginTemplate.addEventListener("submit", async ()=>{
-  let email = loginTemplate.querySelector('#email').value;
-  let password = loginTemplate.querySelector('#password').value;
-  await loginUser(email, password);
-  window.location.hash = "#/"
-  console.log("Email" + email + "logueado");
+  loginUser(email, password).then(status => {
+    if(status.success){
+      window.location.hash = '#/';
+    }else{
+      console.log('error');
+    }
+  })
+  
 });
 
 return loginTemplate;

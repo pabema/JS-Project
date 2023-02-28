@@ -1,26 +1,47 @@
-import { login, signUp } from "./requests.js";
+import { loginSupabase, logoutSupabase, signUpSupabase, getData } from "./requests.js";
 
-export {loginUser, registerUser, logout};
+export {loginUser, registerUser, logout, isLogged};
 
 async function loginUser(email, password){
-    login(email, password).then(dataLogin=>{
+    let status = { success: false }
+    try {
+        let dataLogin = await loginSupabase(email, password);
+        console.log(dataLogin);
         localStorage.setItem("access_token", dataLogin.access_token);
-        localStorage.setItem("user", email);
-        console.log("login");
-        console.log(localStorage);
-        location.reload();
+        status.success = true;
+    }catch(err){
+        console.log(err);
+        status.success = false;
+    }
+    return status;
+    
+}
 
-    });
+function isLogged(){
+    if(localStorage.getItem("access_token")){
+        return true;
+    }
+    return false;
 }
 
 function registerUser(email, password){
-    signUp(email,password).then(dataRegister=>{
-        console.log(dataRegister);
-    });
+    let status = { success: false };
+    try{
+        signUpSupabase(email,password).then(dataRegister=>{
+            console.log(dataRegister);
+            status.success = true;
+        });
+    } catch(err) {
+        console.log(err);
+        status.success = false;
+    }
+    return status;
 }
 
 function logout(){
     localStorage.removeItem('access_token');
-    console.log("logout");
-    console.log(localStorage);
+    logoutSupabase(localStorage.getItem('access_token')).then(data => {
+        console.log(data);
+        
+    })
 }

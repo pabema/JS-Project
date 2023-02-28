@@ -1,6 +1,6 @@
 body{
     background-color: black;
-    color: wheat;
+    color: white;
 }
 
 #header{
@@ -28,4 +28,71 @@ body{
     bottom: 0;
     width: 100%;   
     background: #6cf;
+}
+
+.main_home{
+    margin-top: 5em;
+}
+
+.libros{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.libro{
+    text-align: center;
+}
+
+.libros-top{
+    width: 100%;
+}
+
+.libroTop{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20% 80%;
+    margin: 2em;
+    background-color: rgb(255 255 255 / 50%);
+    padding: 1em;
+    color: black;
+
+}
+
+.infoLibro{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 30% 70%;
+    margin-top: 5em;
+    margin-bottom: -7em;
+    /* margin: 5em; */
+    background-color: rgb(255 255 255 / 50%);
+    padding: 1em;
+    color: black;
+}
+
+.navLibros{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.boton_nav{
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    background-color: gray;
+    border-radius: 10px;
+    border: none;
+    transition: padding .5s;
+
+}
+
+.boton_nav:hover{
+    padding-left: 1.4em;
+    padding-right: 1.4em;
+    padding-top: .4em;
+    padding-bottom: .4em;
+    background-color: gray;
+    border-radius: 10px;
+    border: none;
 }

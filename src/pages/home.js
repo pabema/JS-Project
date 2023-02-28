@@ -1,79 +1,98 @@
-import { datosServidor } from "../service/requests.js";
+import { getData } from "../service/requests.js";
 
-export { dataTemplate, generateHome }
+import { libroTop } from "./libroTop.js";
 
-const token = localStorage.getItem("access_token");
+import image from '../assets/img/castillos_de_fuego.jpg';
+import image2 from '../assets/img/el_cuco_de_cristal.jpg';
+import image3 from '../assets/img/el_tablero_de_la_reina.jpg';
+import image4 from '../assets/img/esperando_al_diluvio.jpg';
+import image5 from '../assets/img/hijos_de_la_fabula.jpg';
+import image6 from '../assets/img/historias_de_mujeres_casadas.jpg';
+import image7 from '../assets/img/la_maldicion_de_hill_house.jpg';
+import image8 from '../assets/img/nosotros.jpg';
+import image9 from '../assets/img/el_poder_de_las_palabras.jpg';
 
-function dataTemplate(dato){
+export { home }
 
-    let dataDiv = document.createElement("div");
-    dataDiv.innerHTML += 
-    `
-    <div class="container">${dato.datos}</div>
-    `;
+function home(){
+  let homeTemplate = document.createElement("div");
+  let libros = document.createElement("div");
+  libros.classList += "libros";
+  let navLibros = document.createElement('div');
+  navLibros.classList += "navLibros";
 
-return dataDiv;
-
-}
-
-function generateHome(){
-
-    let homeTemplate = document.createElement("div");
-    homeTemplate.id = 'home';
-    homeTemplate.innerHTML = 
-    `
-    <h1>Welcome!!</h1>
-    `;
-
-
-
-return homeTemplate;
-
-}
-
-window.addEventListener("hashchange", () => {
-    if(window.location.hash == '#/' && token != undefined){
-        datosServidor().then(serverData => {
+  if(localStorage.getItem('access_token')){
     
-            //console.log(datos);
-        
-            let contenedor = document.querySelector("#container");
-            console.log(contenedor);
-        
+      
+      homeTemplate.id = 'home';
+      homeTemplate.innerHTML = 
+      `
+      <h1>Libros populares</h1>
+      
+      `;
+      
+      getData('libros', localStorage.getItem('access_token')).then(d => {
+          console.log(d);
 
-            serverData.forEach(dato => {
-                contenedor.append(dataTemplate(dato));
-            });
-    
+          let page = 0;
+          let items = 8;
+
+        loadItems();
+        
+          
+          function loadItems() {
+            libros.innerHTML = "";
+
+            for(let i = page*items; i<(page*items)+items; i++){
+                if(!d) { break }
+
+                const item = document.createElement('div');
+                item.innerHTML = `
+                    <img src="assets/img/${d[i].imagen_libro}" style="width: 200px; heigth: 300px">
+                    <h4>${d[i].Nombre}</h4>
+                    <p>${d[i].Autor}</p>
+                `;
+
+                libros.append(item);
+            }
+
+            homeTemplate.append(navLibros);
+            loadPageNav();
             
 
-            
-            //contenedor.append(frases);
-        
-        })
-    }
-    
-})
+          }
 
-window.addEventListener("DOMContentLoaded", () => {
-    if(window.location.hash == '#/' && token != undefined){
-        datosServidor().then(serverData => {
-    
-            //console.log(datos);
-        
-            let contenedor = document.querySelector("#container");
-            console.log(contenedor);
-        
-            serverData.forEach(dato => {
-                contenedor.append(dataTemplate(dato));
-            });
-        
-        })
-    }
-    
-})
-    
+          function loadPageNav() {
+            navLibros.innerHTML = "";
 
-    
+            for(let i = 0; i < (d.length/items); i++){
+                const span = document.createElement('span');
 
+                span.innerHTML = 
+                `
+                <button class="boton_nav">${i+1}</button>
+                `;
+                
 
+                span.addEventListener('click', (e) => {
+
+                    page = e.target.innerHTML-1;
+                    loadItems();
+                     
+                });
+
+                
+                navLibros.append(span);
+            }
+        }
+          
+      });
+      
+      homeTemplate.append(libros);
+      
+  }else{
+      homeTemplate.innerHTML = 
+      ``;
+  }
+  return homeTemplate;
+}

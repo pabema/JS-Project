@@ -1,4 +1,4 @@
-import { logout } from "../service/users.js";
+import { isLogged, logout } from "../service/users.js";
 
 export { menuTemplate }
 
@@ -10,7 +10,7 @@ navMenu.innerHTML =
 `
 <nav id="header" class="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
 <div class="container-fluid">
-  <a class="navbar-brand" href="#">PornHub</a>
+  <a class="navbar-brand" href="#">Booker</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,18 +25,23 @@ navMenu.innerHTML =
       <li class="nav-item">
         <a class="nav-link" href="#/contact">Contact</a>
       </li>
-      <li class="nav-item" id="login">
-        
-      </li>
+      ${!isLogged() ? 
+        `<li class="nav-item" id="login">
+          <a class="nav-link" href="#/login">Login</a>
+        </li>` 
+        : 
+        ``
+      }
     </ul>
     <ul class="navbar-nav">
       <form class="d-flex text-light">
-        <li class="nav-item" id="user">
-          
-        </li>
-        <li class="nav-item" id="logout">
-          
-        </li>
+      ${!isLogged() ? 
+        `` 
+        : 
+        `<li class="nav-item" id="logout">
+          <a class="nav-link" href="#/">Logout</a>
+        </li>`
+      }
       </form>
     </ul>
   </div>
@@ -46,24 +51,14 @@ navMenu.innerHTML =
 
 
 let logoutBtn = navMenu.querySelector("#logout");
-let loginBtn = navMenu.querySelector("#login");
-let user = navMenu.querySelector('#user');
 
-if(localStorage.getItem("access_token") != null){
-  logoutBtn.innerHTML = `<a class="nav-link" href="#/">Logout</a>`;
-  loginBtn.innerHTML = "";
-  user.innerHTML = `<a class="nav-link">${localStorage.getItem('user')}</a>`;
-}else{
-  logoutBtn.innerHTML = "";
-  loginBtn.innerHTML = `<a class="nav-link" href="#/login">Login</a>`;
-  user.innerHTML = "";
+if(logoutBtn){
+  logoutBtn.addEventListener('click', ()=>{
+    logout();
+    window.location.hash = "#/login";
+  })
 }
 
-logoutBtn.addEventListener('click', ()=>{
-  location.reload();
-  logout();
-  localStorage.removeItem('user');
-})
 
 return navMenu;
 
