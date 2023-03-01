@@ -55,6 +55,9 @@ loginTemplate.querySelector('#loginBtn').addEventListener('click', async ()=>{
   let password = loginTemplate.querySelector('#password').value;
   loginUser(email, password).then(status => {
     if(status.success){
+      console.log(status);
+      // localStorage.setItem('email', email);
+      // localStorage.setItem('userData', status['user']['user_metadata']);
       window.location.hash = '#/';
     }else{
       console.log('error');

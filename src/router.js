@@ -1,9 +1,11 @@
 import { home } from "./pages/home.js";
 import { loginForm } from "./pages/login.js";
-import { aboutTemplate } from "./pages/about.js";
+import { topTemplate } from "./pages/top.js";
 import { signUpForm } from "./pages/signUp.js";
 import { contactTemplate } from "./pages/contact.js";
 import { bookInfo } from "./pages/bookInfo.js";
+import { cuentaTemplate } from "./pages/cuenta.js";
+import { modificarPerfil } from "./pages/modificarPerfil.js";
 
 export {route};
 
@@ -27,7 +29,7 @@ function route(ruta){
             break;
         case '#/about':
             body.innerHTML = '';
-            body.append(aboutTemplate());
+            body.append(topTemplate());
             break;
         case '#/signUp':
             body.innerHTML = '';
@@ -35,12 +37,20 @@ function route(ruta){
             break;
         case '#/contact':
             body.innerHTML = '';
-            body.append(contactTemplate);
+            body.append(contactTemplate());
             break;
         case '#/book':
-                body.innerHTML = '';
-                body.append(bookInfo());
-                break;
+            body.innerHTML = '';
+            body.append(bookInfo());
+            break;
+        case '#/cuenta':
+            body.innerHTML = '';
+            body.append(cuentaTemplate());
+            break;
+        case '#/modificarPerfil':
+            body.innerHTML = '';
+            body.append(modificarPerfil());
+            break;
         case "": {
             window.location.hash = "#/";
             break;

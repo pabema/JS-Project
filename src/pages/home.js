@@ -1,25 +1,21 @@
-import { getData } from "../service/requests.js";
+import { getData, searchProducts, getLibrosInicio } from "../service/requests.js";
 
 import { libroTop } from "./libroTop.js";
 
-import image from '../assets/img/castillos_de_fuego.jpg';
-import image2 from '../assets/img/el_cuco_de_cristal.jpg';
-import image3 from '../assets/img/el_tablero_de_la_reina.jpg';
-import image4 from '../assets/img/esperando_al_diluvio.jpg';
-import image5 from '../assets/img/hijos_de_la_fabula.jpg';
-import image6 from '../assets/img/historias_de_mujeres_casadas.jpg';
-import image7 from '../assets/img/la_maldicion_de_hill_house.jpg';
-import image8 from '../assets/img/nosotros.jpg';
-import image9 from '../assets/img/el_poder_de_las_palabras.jpg';
+import { libroGeneral } from "./libroGeneral.js";
 
 export { home }
 
 function home(){
   let homeTemplate = document.createElement("div");
+  homeTemplate.classList += "home";
   let libros = document.createElement("div");
   libros.classList += "libros";
   let navLibros = document.createElement('div');
   navLibros.classList += "navLibros";
+  let buscador = document.createElement('input');
+  buscador.classList += "buscador form-control";
+  buscador.placeholder = "ej. La maldicion de hill house";
 
   if(localStorage.getItem('access_token')){
     
@@ -30,8 +26,24 @@ function home(){
       <h1>Libros populares</h1>
       
       `;
+
+      function buscarLibros(filtro){
+        searchProducts('libros', filtro, localStorage.getItem('access_token')).then(d => {
+          for (let g of d) {
+            libros.append(libroGeneral(g));
+        }
+          console.log(d);
+        })
+      }
+
+      buscador.addEventListener('input', () => {
+        buscarLibros(buscador.value);
+        libros.innerHTML = "";
+      })
+
+      homeTemplate.appendChild(buscador);
       
-      getData('libros', localStorage.getItem('access_token')).then(d => {
+      getLibrosInicio('random_books', localStorage.getItem('access_token')).then(d => {
           console.log(d);
 
           let page = 0;
@@ -47,11 +59,18 @@ function home(){
                 if(!d) { break }
 
                 const item = document.createElement('div');
+                item.classList+="divLibro";
                 item.innerHTML = `
-                    <img src="assets/img/${d[i].imagen_libro}" style="width: 200px; heigth: 300px">
+                    <img src="${d[i].imagen_libro}" style="width: 200px; heigth: 300px">
                     <h4>${d[i].Nombre}</h4>
                     <p>${d[i].Autor}</p>
                 `;
+
+                item.addEventListener('click', () => {
+                  window.location.hash = `#/book`;
+                  localStorage.setItem('id', d[i].id);
+
+                })
 
                 libros.append(item);
             }

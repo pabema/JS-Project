@@ -22,6 +22,10 @@ body{
     margin-bottom: 40px;
 }
 
+#about{
+    margin-top: 5em;
+}
+
 #footer{
     /* display: inline-block; */
     position: relative;
@@ -33,10 +37,19 @@ body{
 .main_home{
     margin-top: 5em;
 }
+.home{
+    margin-top: 5em;
+    text-align: center;
+}
+
+
+.buscador{
+    margin: 2em;
+}
 
 .libros{
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 25% 25% 25% 25%;
 }
 
 .libro{
@@ -45,6 +58,7 @@ body{
 
 .libros-top{
     width: 100%;
+    
 }
 
 .libroTop{
@@ -52,9 +66,9 @@ body{
     width: 100%;
     grid-template-columns: 20% 80%;
     margin: 2em;
-    background-color: rgb(255 255 255 / 50%);
+    background-color: rgba(95, 81, 81, 0.5);
     padding: 1em;
-    color: black;
+    color: white;
 
 }
 
@@ -65,9 +79,9 @@ body{
     margin-top: 5em;
     margin-bottom: -7em;
     /* margin: 5em; */
-    background-color: rgb(255 255 255 / 50%);
+    background-color: rgba(95, 81, 81, 0.5);
     padding: 1em;
-    color: black;
+    color: white;
 }
 
 .navLibros{
@@ -87,7 +101,7 @@ body{
 
 }
 
-.boton_nav:hover{
+.boton_nav:hover, .boton_nav:focus{
     padding-left: 1.4em;
     padding-right: 1.4em;
     padding-top: .4em;
@@ -95,4 +109,82 @@ body{
     background-color: gray;
     border-radius: 10px;
     border: none;
+}
+
+.button_libro_top{
+    position: relative;
+    width: 10%;
+    left: 80%;
+    background-color: black;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: .5em;
+    transition: background-color .5s;
+}
+
+.button_libro_top:hover{
+    position: relative;
+    width: 10%;
+    left: 80%;
+    background-color: gray;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    
+}
+
+
+.boton_comprar{
+    position: relative;
+    width: 20%;
+    left: 70%;
+    background-color: black;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: .5em;
+    transition: background-color .5s;
+}
+
+.boton_comprar:hover{
+    position: relative;
+    width: 20%;
+    left: 70%;
+    background-color: gray;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    
+}
+
+
+.divLibro{
+    margin: 1em;
+}
+
+.divLibro:hover{
+    cursor: pointer;
+    margin: 1em;
+}
+
+#cuenta{
+    margin-top: 5em;
+    width: 100%;
+    text-align: center;
+}
+
+.cuentaDiv{
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+
+.infoCuenta{
+    left: 7em;
+    margin-top: 4em;
+}
+
+.avatar{
+    width: 30px;
+    height: 30px;
 }

@@ -6,6 +6,9 @@ function menuTemplate(){
 
 let navMenu = document.createElement("div");
 navMenu.id = 'header';
+
+let data = localStorage.getItem('userData');
+let user = JSON.parse(data);
 navMenu.innerHTML = 
 `
 <nav id="header" class="navbar navbar-dark navbar-expand-lg bg-dark sticky-top">
@@ -20,7 +23,7 @@ navMenu.innerHTML =
         <a class="nav-link" href="#/">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#/about">About</a>
+        <a class="nav-link" href="#/about">Top 10</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#/contact">Contact</a>
@@ -40,6 +43,12 @@ navMenu.innerHTML =
         : 
         `<li class="nav-item" id="logout">
           <a class="nav-link" href="#/">Logout</a>
+        </li>
+        <li class="nav-item">
+          <img src="${user['img_profile']}" class="avatar">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#/cuenta">${user['username']}</a>
         </li>`
       }
       </form>
@@ -55,6 +64,7 @@ let logoutBtn = navMenu.querySelector("#logout");
 if(logoutBtn){
   logoutBtn.addEventListener('click', ()=>{
     logout();
+    localStorage.clear();
     window.location.hash = "#/login";
   })
 }

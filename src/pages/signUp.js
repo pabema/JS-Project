@@ -21,8 +21,8 @@ signUpTemplate.innerHTML =
               <form>
 
                 <div class="form-outline form-white mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
+                  <input type="text" id="username" class="form-control form-control-lg" />
+                  <label class="form-label" for="username">Your Name</label>
                 </div>
 
                 <div class="form-outline form-white mb-4">
@@ -55,9 +55,19 @@ signUpTemplate.innerHTML =
 `;
 
 signUpTemplate.querySelector('#signUpBtn').addEventListener('click', async ()=>{
+  let username = signUpTemplate.querySelector('#username').value;
   let email = signUpTemplate.querySelector('#email').value;
   let password = signUpTemplate.querySelector('#password').value;
-  let dataSignUp = await registerUser(email, password);
+  let datos = {
+    "email": email,
+    "password": password,
+    data:{
+      "username": username,
+      "email": email,
+      "img_profile": "https://ivxveojbonwlcotyrwnq.supabase.co/storage/v1/object/public/avatars/default.png"
+    }
+  }
+  let dataSignUp = await registerUser(datos);
   console.log(dataSignUp);
 })
 
