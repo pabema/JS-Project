@@ -58,13 +58,18 @@ signUpTemplate.querySelector('#signUpBtn').addEventListener('click', async ()=>{
   let username = signUpTemplate.querySelector('#username').value;
   let email = signUpTemplate.querySelector('#email').value;
   let password = signUpTemplate.querySelector('#password').value;
+  let url_img = `https://ivxveojbonwlcotyrwnq.supabase.co/storage/v1/object/public/avatars/`;
+  let img = `default.png`;
+  let profile_img = url_img + img;
   let datos = {
     "email": email,
     "password": password,
     data:{
       "username": username,
       "email": email,
-      "img_profile": "https://ivxveojbonwlcotyrwnq.supabase.co/storage/v1/object/public/avatars/default.png"
+      "url_img": url_img,
+      "img": img,
+      "profile_img": profile_img
     }
   }
   let dataSignUp = await registerUser(datos);

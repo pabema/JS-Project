@@ -7,11 +7,6 @@ function modificarPerfil(){
 let datos = localStorage.getItem('userData');
 let user = JSON.parse(datos);
 
-
-
-
-
-
 let modificarPerfil = document.createElement("div");
 modificarPerfil.di = 'signUp';
 modificarPerfil.innerHTML = 
@@ -63,27 +58,50 @@ modificarPerfil.querySelector('#signUpBtn').addEventListener('click', async (e)=
   let email = modificarPerfil.querySelector('#email').value;
   let img = modificarPerfil.querySelector('input[type=file]').files[0];
 
-  const avatarFile = img
-  const { data, error } = await supabase
-    .storage
-    .from('avatars')
-    .upload(img['name'], avatarFile, {
-      cacheControl: '3600',
-      upsert: false
-  });
-  console.log(img);
-  let datos = {
-    "email": email,
-    data:{
-      "username": username,
+  if(img){
+    const avatarFile = img
+    const { data, error } = await supabase
+      .storage
+      .from('avatars')
+      .upload(img['name'], avatarFile, {
+        cacheControl: '3600',
+        upsert: false
+    });
+    console.log(img);
+    let datos = {
       "email": email,
-      "img_profile": `https://ivxveojbonwlcotyrwnq.supabase.co/storage/v1/object/public/avatars/${img['name']}`
+      data:{
+        "username": username,
+        "email": email,
+        "url_img": user['url_img'],
+        "img": `${img['name']}`,
+        "profile_img": user['url_img']+img['name']
+      }
     }
-  }
-  let dataModificacion = await updateUser(datos, localStorage.getItem('access_token'));
-  console.log(dataModificacion);
+    let dataModificacion = await updateUser(datos, localStorage.getItem('access_token'));
+    console.log(dataModificacion);
 
-  window.location.hash = "#/cuenta";
+    window.location.hash = "#/cuenta";
+
+  }else {
+    console.log(img);
+    let datos = {
+      "email": email,
+      data:{
+        "username": username,
+        "email": email,
+        "url_img": user['url_img'],
+        "img": user['img'],
+        "profile_img": user['url_img']+user['img']
+      }
+    }
+    let dataModificacion = await updateUser(datos, localStorage.getItem('access_token'));
+    console.log(dataModificacion);
+
+    window.location.hash = "#/cuenta";
+  }
+
+  
 })
 
 return modificarPerfil;

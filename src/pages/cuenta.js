@@ -21,7 +21,7 @@ function cuentaTemplate(){
        
             <h1>Informacion de la cuenta</h1>
             <div class="cuentaDiv">
-            <img src="${usuario['img_profile']}">
+            <img src="${usuario['profile_img']}">
             <div class="infoCuenta">
                 <h2>Nombre: ${usuario['username']}</h2>
                 <h3>Email: ${usuario['email']}</h3>

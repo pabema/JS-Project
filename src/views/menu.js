@@ -45,7 +45,7 @@ navMenu.innerHTML =
           <a class="nav-link" href="#/">Logout</a>
         </li>
         <li class="nav-item">
-          <img src="${user['img_profile']}" class="avatar">
+          <img src="${user['profile_img']}" class="avatar">
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#/cuenta">${user['username']}</a>
